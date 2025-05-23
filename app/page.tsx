@@ -1,11 +1,10 @@
 import { BlogCard } from '@/components/blog/Card';
 import { BlogGrid } from '@/components/blog/Grid';
 import { Typography } from '@/components/ui/Typography';
-import { getAuthors } from '@/models/author/api';
 import { getPosts } from '@/models/posts/api';
 
 export default async function Home() {
-  const [posts] = await Promise.all([getPosts(), getAuthors()]);
+  const posts = await getPosts();
 
   return (
     <div className="container mx-auto">

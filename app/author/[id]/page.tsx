@@ -1,5 +1,5 @@
 import { getAuthorsInfo } from '@/actions/authors/actions';
-import { getPostByAuthorIdAction } from '@/actions/posts/posts';
+import { postByAuthorIdAction } from '@/actions/posts/posts';
 import { BlogCard } from '@/components/blog/Card';
 import { BlogGrid } from '@/components/blog/Grid';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
@@ -39,7 +39,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const resolvedParams = await params;
 
   const author = await getAuthorsInfo(Number(resolvedParams.id));
-  const posts = await getPostByAuthorIdAction(Number(resolvedParams.id));
+  const posts = await postByAuthorIdAction(Number(resolvedParams.id));
 
   return (
     <div className="flex flex-col gap-4">

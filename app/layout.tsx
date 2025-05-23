@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { getAuthors } from '@/models/author/api';
-import { getPosts } from '@/models/posts/api';
-
 import { Container } from '@/components/ui/Container';
 import './globals.css';
 
@@ -22,13 +19,11 @@ export const metadata: Metadata = {
   description: 'Blog',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await Promise.all([getAuthors(), getPosts()]);
-
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
