@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getAuthorsInfo } from '@/actions/authors/actions';
+import { authorsInfo } from '@/actions/authors/actions';
 import { TId } from '@/models/types';
 import { UserInfoAvatar, UserRow } from '../user/Info';
 
@@ -33,7 +33,7 @@ export const AuthorInfo = async ({
 }) => {
   if (!authorId) return null;
 
-  const author = await getAuthorsInfo(authorId);
+  const author = await authorsInfo(authorId);
 
   if (!author) return null;
 

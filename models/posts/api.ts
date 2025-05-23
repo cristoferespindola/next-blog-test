@@ -12,12 +12,16 @@ export const getPosts = async (): Promise<IApiSuccessResult<IApiPost[]>> => {
     .catch((err) => {
       return {
         success: false,
-        data: [],
         status: 500,
         message: 'Posts not found',
+        data: [],
         error: err,
       };
     });
+
+  if (response.error) {
+    return response;
+  }
 
   return {
     success: true,
@@ -37,12 +41,17 @@ export const getPostById = async (id: TId): Promise<IApiSuccessResult<IApiPost>>
     .catch((err) => {
       return {
         success: false,
-        data: {},
         status: 500,
         message: 'Post not found',
+        data: {},
         error: err,
       };
     });
+
+  if (response.error) {
+    return response;
+  }
+
   return {
     success: true,
     data: response,
@@ -61,12 +70,17 @@ export const getPostComments = async (id: TId): Promise<IApiSuccessResult<IApiCo
     .catch((err) => {
       return {
         success: false,
-        data: [],
         status: 500,
         message: 'Post comments not found',
+        data: [],
         error: err,
       };
     });
+
+  if (response.error) {
+    return response;
+  }
+
   return {
     success: true,
     status: 200,

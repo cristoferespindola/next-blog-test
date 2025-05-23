@@ -1,15 +1,15 @@
-import { getAuthorsInfo } from '@/actions/authors/actions';
+import { authorsInfo } from '@/actions/authors/actions';
 import { AuthorInfo } from '@/components/author/Info';
 import { Comments } from '@/components/blog/Comments';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Typography } from '@/components/ui/Typography';
 import { getPostById } from '@/models/posts/api';
 
-const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => {
   const resolvedParams = await params;
 
-  const post = await getPostById(Number(resolvedParams.id));
-  const author = await getAuthorsInfo(post.data.userId);
+  const post = await getPostById(Number(resolvedParams.postId));
+  const author = await authorsInfo(post.data.userId);
 
   return (
     <div className="flex flex-col gap-4">

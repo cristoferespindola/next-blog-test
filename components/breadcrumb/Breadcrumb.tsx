@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { HomeIcon } from '../icons/Home';
+import { Intro } from '../ui/Intro';
 
 const BreadcrumbSeparator = () => {
   return (
@@ -48,12 +49,15 @@ const BreadcrumbHome = () => {
 
 export const Breadcrumb = ({ children }: { children: React.ReactNode }) => {
   return (
-    <nav aria-label="Breadcrumb" className="w-fit">
-      <ol className="flex items-center h-11 w-auto px-4 shadow-around rounded-lg text-gray-500">
-        <BreadcrumbHome />
-        {children}
-      </ol>
-    </nav>
+    <div className="flex flex-col gap-4">
+      <Intro size="small" />
+      <nav aria-label="Breadcrumb" className="w-fit">
+        <ol className="flex items-center h-11 w-auto px-4 shadow-around rounded-lg text-gray-500">
+          <BreadcrumbHome />
+          {children}
+        </ol>
+      </nav>
+    </div>
   );
 };
 

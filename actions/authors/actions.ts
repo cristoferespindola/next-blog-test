@@ -14,7 +14,7 @@ export const getAuthorss = async () => {
   return authors.data;
 };
 
-export const getAuthorsInfo = async (id: TId): Promise<TAuthor> => {
+export const authorsInfo = async (id: TId): Promise<TAuthor> => {
   const authors = (await getAuthors()).data;
 
   const author = authors.find((author) => author.id === id);

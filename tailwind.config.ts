@@ -82,6 +82,9 @@ export default {
         '.section-border': {
           '@apply border-t border-gray-200 pt-10 md:pt-16 mt-10 md:mt-16': {},
         },
+        '.font-roboto-mono': {
+          fontFamily: 'var(--font-roboto-mono)',
+        },
       });
     }),
   ],

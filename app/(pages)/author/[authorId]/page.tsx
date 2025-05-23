@@ -1,45 +1,15 @@
-import { getAuthorsInfo } from '@/actions/authors/actions';
-import { postByAuthorIdAction } from '@/actions/posts/posts';
-import { BlogCard } from '@/components/blog/Card';
-import { BlogGrid } from '@/components/blog/Grid';
+import { authorsInfo } from '@/actions/authors/actions';
+import { InfoItem, InfoSection } from '@/components/author/Page';
+import { AuthorPosts } from '@/components/author/Posts';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Grid } from '@/components/ui/grid/Grid';
 import { Typography } from '@/components/ui/Typography';
+import { Suspense } from 'react';
 
-const InfoSection = ({ children, title }: { children: React.ReactNode; title: string }) => {
-  return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-3xl">
-        {title}
-      </h2>
-      {children}
-    </div>
-  );
-};
-
-const InfoItem = ({
-  children,
-  title,
-  href,
-}: {
-  children: React.ReactNode;
-  title: string;
-  href?: string;
-}) => {
-  const ChildrenWrapper = href ? 'a' : 'span';
-  return (
-    <p className="text-pretty font-semibold">
-      {title}:{' '}
-      <ChildrenWrapper className="text-gray-600 hover-link font-normal">{children}</ChildrenWrapper>
-    </p>
-  );
-};
-
-const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+const PostPage = async ({ params }: { params: Promise<{ authorId: string }> }) => {
   const resolvedParams = await params;
 
-  const author = await getAuthorsInfo(Number(resolvedParams.id));
-  const posts = await postByAuthorIdAction(Number(resolvedParams.id));
+  const author = await authorsInfo(Number(resolvedParams.authorId));
 
   return (
     <div className="flex flex-col gap-4">
@@ -85,11 +55,9 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           </InfoSection>
         </div>
       </Grid>
-      <BlogGrid>
-        {posts.map((post) => (
-          <BlogCard key={post.id} post={post} hideAuthor={true} />
-        ))}
-      </BlogGrid>
+      <Suspense>
+        <AuthorPosts id={Number(resolvedParams.authorId)} />
+      </Suspense>
     </div>
   );
 };
