@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import { HomeIcon } from '../icons/Home';
-import { Intro } from '../ui/Intro';
 
 const BreadcrumbSeparator = () => {
   return (
@@ -23,14 +22,16 @@ const BreadcrumbItem = ({
   url,
   label,
   active,
+  className,
 }: {
   url: string;
   label: React.ReactNode | string;
   active: boolean;
+  className?: string;
 }) => {
   return (
     <Link
-      className={`capitalize mr-4 hover:text-gray-700 ${active ? 'cursor-default' : 'text-primary'}`}
+      className={`capitalize mr-4 hover:text-gray-700 truncate max-w-[110px] ${active ? 'cursor-default md:max-w-[40vw]' : 'text-primary'} ${className}`}
       href={active ? '' : url}
     >
       {label}
@@ -41,7 +42,7 @@ const BreadcrumbItem = ({
 const BreadcrumbHome = () => {
   return (
     <>
-      <BreadcrumbItem url="/" label={<HomeIcon />} active={false} />
+      <BreadcrumbItem url="/" label={<HomeIcon />} active={false} className="min-w-5 mr-0" />
       <BreadcrumbSeparator />
     </>
   );
@@ -50,9 +51,8 @@ const BreadcrumbHome = () => {
 export const Breadcrumb = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col gap-4">
-      <Intro size="small" />
-      <nav aria-label="Breadcrumb" className="w-fit">
-        <ol className="flex items-center h-11 w-auto px-4 shadow-around rounded-lg text-gray-500">
+      <nav aria-label="Breadcrumb">
+        <ol className="flex items-center h-11 w-full md:w-[max-content] px-4 shadow-around rounded-lg text-gray-500">
           <BreadcrumbHome />
           {children}
         </ol>

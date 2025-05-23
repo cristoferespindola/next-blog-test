@@ -27,15 +27,13 @@ const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => 
         {post.data.title}
       </Typography.Heading>
       <AuthorInfo authorId={post.data.userId} type="avatar" />
-      <div className="max-w-2xl mx-auto">
-        <div className="flex items-center gap-2">
-          <Typography.Text size="base" color="muted" className="mt-12 max-w-3xl">
-            {post.data.body}
-          </Typography.Text>
-        </div>
-        <div className="mt-20">
-          <Comments postId={post.data.id} />
-        </div>
+      <div className="flex items-center gap-2 max-w-6xl mx-auto">
+        <Typography.Text size="base" color="muted" className="mt-12">
+          {post.data.body}
+        </Typography.Text>
+      </div>
+      <div className="mt-20 max-w-2xl mx-auto">
+        <Comments postId={post.data.id} />
       </div>
     </div>
   );

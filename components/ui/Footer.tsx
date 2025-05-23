@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Container } from './Container';
-import { Intro } from './Intro';
+import { Intro } from './header/Intro';
 import { Typography } from './Typography';
 
 export const Footer = () => {
@@ -10,7 +10,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-4">
             <Link href="/">
-              <Intro size="small" className="text-white" />
+              <Intro size="sm" className="text-white" />
             </Link>
             <Typography.Text className="text-white">Footer</Typography.Text>
           </div>

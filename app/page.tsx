@@ -1,7 +1,7 @@
 import { BlogCard } from '@/components/blog/Card';
 import { BlogGrid } from '@/components/blog/Grid';
 import { Container } from '@/components/ui/Container';
-import { Intro } from '@/components/ui/Intro';
+import { Intro } from '@/components/ui/header/Intro';
 import { Typography } from '@/components/ui/Typography';
 import { getPosts } from '@/models/posts/api';
 export default async function Home() {
