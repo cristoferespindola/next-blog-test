@@ -4,10 +4,10 @@ import { Comments } from '@/components/blog/Comments';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Typography } from '@/components/ui/Typography';
 import { getPostById } from '@/models/posts/api';
-import { IPages } from '@/types/pages';
 
-const PostPage = async ({ params }: IPages) => {
+const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const resolvedParams = await params;
+
   const post = await getPostById(Number(resolvedParams.id));
   const author = await getAuthorsInfo(post.data.userId);
 

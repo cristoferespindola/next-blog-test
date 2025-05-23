@@ -5,7 +5,6 @@ import { BlogGrid } from '@/components/blog/Grid';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Grid } from '@/components/ui/grid/Grid';
 import { Typography } from '@/components/ui/Typography';
-import { IPages } from '@/types/pages';
 
 const InfoSection = ({ children, title }: { children: React.ReactNode; title: string }) => {
   return (
@@ -36,7 +35,7 @@ const InfoItem = ({
   );
 };
 
-const PostPage = async ({ params }: IPages) => {
+const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const resolvedParams = await params;
 
   const author = await getAuthorsInfo(Number(resolvedParams.id));

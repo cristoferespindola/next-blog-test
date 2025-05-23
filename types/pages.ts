@@ -1,5 +1,9 @@
 export interface IPages {
-  params: {
-    id: string;
-  };
+  params:
+    | {
+        id: string;
+      }
+    | Promise<{
+        id: string;
+      }>;
 }
