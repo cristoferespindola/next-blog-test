@@ -1,10 +1,13 @@
 import { API_URL } from '../constants';
-import { apiRequest } from '../request';
 import { IApiSuccessResult, TId } from '../types';
 import { IApiComment, IApiPost } from './types';
 
 export const getPosts = async (): Promise<IApiSuccessResult<IApiPost[]>> => {
-  const response = await apiRequest(`${API_URL}/posts`)
+  const response = await fetch(`${API_URL}/posts`, {
+    next: {
+      revalidate: 3600,
+    },
+  })
     .then((res) => res.json())
     .catch((err) => {
       return {
@@ -25,7 +28,11 @@ export const getPosts = async (): Promise<IApiSuccessResult<IApiPost[]>> => {
 };
 
 export const getPostById = async (id: TId): Promise<IApiSuccessResult<IApiPost>> => {
-  const response = await apiRequest(`${API_URL}/posts/${id}`)
+  const response = await fetch(`${API_URL}/posts/${id}`, {
+    next: {
+      revalidate: 3600,
+    },
+  })
     .then((res) => res.json())
     .catch((err) => {
       return {
@@ -45,7 +52,11 @@ export const getPostById = async (id: TId): Promise<IApiSuccessResult<IApiPost>>
 };
 
 export const getPostComments = async (id: TId): Promise<IApiSuccessResult<IApiComment[]>> => {
-  const response = await apiRequest(`${API_URL}/posts/${id}/comments`)
+  const response = await fetch(`${API_URL}/posts/${id}/comments`, {
+    next: {
+      revalidate: 3600,
+    },
+  })
     .then((res) => res.json())
     .catch((err) => {
       return {
