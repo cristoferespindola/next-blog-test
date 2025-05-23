@@ -1,17 +1,45 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { getAuthorsInfo } from "@/actions/authors";
+import { getAuthorsInfo } from '@/actions/authors/actions';
+import { TId } from '@/models/types';
+import { UserInfoAvatar, UserRow } from '../user/Info';
 
-export const AuthorInfo = async ({ authorId }: { authorId: number }) => {
-    if (!authorId) return null;
+export const AuthorRow = ({ id, name }: { id: TId; name: string }) => {
+  if (!id || !name) return null;
 
-    const author = await getAuthorsInfo(authorId);
+  return (
+    <Link href={`/author/${id}`}>
+      <UserRow name={name} />
+    </Link>
+  );
+};
 
-    if (!author) return null;
+const AuthorInfoAvatar = ({ id, name, company }: { id: TId; name: string; company: string }) => {
+  if (!id || !name || !company) return null;
 
-    return (
-        <div className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 hover:underline transition-all duration-300">
-            <span><Link href={`/author/${author.id}`}>By {author?.name}</Link></span>
-        </div>
-    );
+  return (
+    <Link href={`/author/${id}`} className="flex items-center gap-4">
+      <UserInfoAvatar name={name} sub={company} />
+    </Link>
+  );
+};
+
+export const AuthorInfo = async ({
+  authorId,
+  type = 'row',
+}: {
+  authorId: TId;
+  type?: 'row' | 'avatar';
+}) => {
+  if (!authorId) return null;
+
+  const author = await getAuthorsInfo(authorId);
+
+  if (!author) return null;
+
+  return type === 'row' ? (
+    <AuthorRow id={author.id} name={author.name} />
+  ) : (
+    <AuthorInfoAvatar id={author.id} name={author.name} company={author.company} />
+  );
 };

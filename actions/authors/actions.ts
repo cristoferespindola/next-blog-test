@@ -1,0 +1,32 @@
+'use server';
+
+import { getAuthors } from '@/models/author/api';
+import { TId } from '@/models/types';
+import { TAuthor } from './types';
+
+export const getAuthorss = async () => {
+  const authors = await getAuthors();
+
+  if (!authors.success) {
+    return null;
+  }
+
+  return authors.data;
+};
+
+export const getAuthorsInfo = async (id: TId): Promise<TAuthor> => {
+  const authors = (await getAuthors()).data;
+
+  const author = authors.find((author) => author.id === id);
+
+  return {
+    name: author?.name || '',
+    username: author?.username || '',
+    id: author?.id || 0,
+    email: author?.email || '',
+    phone: author?.phone || '',
+    website: author?.website || '',
+    company: author?.company.name || '',
+    address: author?.address.city || '',
+  };
+};

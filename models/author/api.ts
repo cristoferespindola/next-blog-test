@@ -1,6 +1,6 @@
 import { API_URL } from '../constants';
+import { IApiSuccessResult, TId } from '../types';
 import { APIAuthor } from './types';
-import { IApiSuccessResult } from '../types';
 
 export const getAuthors = async (): Promise<IApiSuccessResult<APIAuthor[]>> => {
   const response = await fetch(`${API_URL}/users`)
@@ -23,7 +23,7 @@ export const getAuthors = async (): Promise<IApiSuccessResult<APIAuthor[]>> => {
   };
 };
 
-export const getAuthorById = async (id: number): Promise<IApiSuccessResult<APIAuthor>> => {
+export const getAuthorById = async (id: TId): Promise<IApiSuccessResult<APIAuthor>> => {
   const response = await fetch(`${API_URL}/users/${id}`)
     .then((res) => res.json())
     .catch((err) => {

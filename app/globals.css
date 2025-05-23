@@ -3,9 +3,18 @@
 @tailwind utilities;
 
 :root {
+  /* colors */
+  --black: #000000;
+  --white: #ffffff;
   --background: #ffffff;
   --text: #171717;
   --text-muted: #64748b;
+
+  /* shadow */
+  --shadow-color: #0000005c;
+  --shadow-color-hover: #0000007c;
+  --shadow-around: 0 0 3px 0 var(--shadow-color, #0000005c);
+  --shadow-around-hover: 0 0 3px 0 var(--shadow-color-hover, #0000007c);
 }
 
 /* @media (prefers-color-scheme: dark) {

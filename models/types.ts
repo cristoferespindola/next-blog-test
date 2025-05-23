@@ -1,3 +1,5 @@
+export type TId = number | string;
+
 export interface APIResponse<T> {
   data: T;
   status: number;
@@ -7,5 +9,3 @@ export interface APIResponse<T> {
 
 export type IApiSuccessResult<T = unknown> = APIResponse<T> & { success: true };
 export type IApiErrorResult<T = unknown> = APIResponse<T> & { success: false };
-
-
