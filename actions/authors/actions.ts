@@ -14,10 +14,16 @@ export const getAuthorss = async () => {
   return authors.data;
 };
 
-export const authorsInfo = async (id: TId): Promise<TAuthor> => {
+export const authorsInfo = async (id: TId): Promise<TAuthor | { error: boolean }> => {
   const authors = (await getAuthors()).data;
 
   const author = authors.find((author) => author.id === id);
+
+  if (!author) {
+    return {
+      error: true,
+    };
+  }
 
   return {
     name: author?.name || '',

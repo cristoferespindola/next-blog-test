@@ -4,6 +4,7 @@ import { AuthorPosts } from '@/components/author/Posts';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Grid } from '@/components/ui/grid/Grid';
 import { Typography } from '@/components/ui/Typography';
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 const PostPage = async ({ params }: { params: Promise<{ authorId: string }> }) => {
@@ -11,10 +12,14 @@ const PostPage = async ({ params }: { params: Promise<{ authorId: string }> }) =
 
   const author = await authorsInfo(Number(resolvedParams.authorId));
 
+  if (!author || 'error' in author) {
+    return notFound();
+  }
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 inner-container">
       <Breadcrumb>
-        <Breadcrumb.Item url="" label={author.name} active={true} />
+        <Breadcrumb.Item url="" label={author?.name || 'Author'} active={true} />
       </Breadcrumb>
 
       <Typography.Heading level={2} className="mt-8">

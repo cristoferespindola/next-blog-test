@@ -4,21 +4,27 @@ import { Comments } from '@/components/blog/Comments';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Typography } from '@/components/ui/Typography';
 import { getPostById } from '@/models/posts/api';
-
+import { notFound } from 'next/navigation';
 const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => {
   const resolvedParams = await params;
 
   const post = await getPostById(Number(resolvedParams.postId));
   const author = await authorsInfo(post.data.userId);
 
+  if (!post || post?.error) {
+    return notFound();
+  }
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 inner-container">
       <Breadcrumb>
-        <Breadcrumb.Item
-          url={`/author/${post.data.userId}`}
-          label={author.name || 'Author'}
-          active={false}
-        />
+        {author && !('error' in author) && (
+          <Breadcrumb.Item
+            url={`/author/${post.data.userId}`}
+            label={author?.name || 'Author'}
+            active={false}
+          />
+        )}
         <Breadcrumb.Separator />
         <Breadcrumb.Item url={`/post/${post.data.id}`} label={post.data.title} active={true} />
       </Breadcrumb>

@@ -85,6 +85,9 @@ export default {
         '.font-roboto-mono': {
           fontFamily: 'var(--font-roboto-mono)',
         },
+        '.inner-container': {
+          '@apply min-h-[calc(100vh-var(--header-height)-var(--footer-height))]': {},
+        },
       });
     }),
   ],

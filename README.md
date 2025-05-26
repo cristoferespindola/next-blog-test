@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mock Blog
+
+A modern blog application built with Next.js, React, and Tailwind CSS.
+
+## Technologies Used
+
+- **Next.js 15** (App Router, SSR/ISR)
+- **NodeJS 20**
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS 3.4**
+- **ESLint & Prettier** (code quality)
+- **tailwind-merge** (utility class merging)
 
 ## Getting Started
 
-First, run the development server:
+To use the project node version(see [nvm](https://github.com/nvm-sh/nvm) if need to install)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+nvm use
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+yarn install
+yarn dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  (pages)/
+    author/[authorId]/
+      loading.tsx
+      page.tsx
+    post/[postId]/
+      page.tsx
+      layout.tsx
+    favicon.ico
+    globals.css
+    layout.tsx
+    page.tsx
+components/
+  author/
+  blog/
+  breadcrumb/
+  icons/
+  ui/
+    grid/
+      Grid.tsx
+      types.ts
+    header/
+      Header.tsx
+      Intro.tsx
+      types.ts
+    Container.tsx
+    Footer.tsx
+    Loader.tsx
+    Typography.tsx
+  user/
+models/
+  authors/
+  posts/
+node_modules/
+public/
+types/
+utils/
+  classes.ts
+.gitignore
+.nvmrc
+.prettierrc
+.eslint.config.mjs
+next-env.d.ts
+next.config.ts
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.ts
+tsconfig.json
+yarn.lock
+```
 
-## Learn More
+- **app/**: Main application folder (Next.js App Router)
+- **components/**: Reusable UI and feature components
+- **models/**: Data fetching and API logic
+- **types/**: TypeScript type definitions
+- **utils/**: Utility functions
+- **public/**: Static assets
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
