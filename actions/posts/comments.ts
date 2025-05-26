@@ -12,4 +12,6 @@ export const getComments = async (postId: TId): Promise<IApiComment[]> => {
   }
 
   return comments.data as IApiComment[];
+
+  
 };
