@@ -95,6 +95,8 @@ NEXT_PUBLIC_API_REVALIDATE=3600
 
 # Key to authorize cache revalidation requests
 
-NEXT_PUBLIC_CACHE_REVALIDATE_KEY=YOUR_KEY
+## The can define any key.
+
+NEXT_CACHE_REVALIDATE_KEY=YOUR_KEY
 
 Or just rename the `.env.example` to `.env.local`

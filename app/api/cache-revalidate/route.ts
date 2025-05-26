@@ -8,7 +8,7 @@ export const revalidate = 0;
  * @description The key to clear the cache
  * This is a public key that can be used to clear the cache for a given tag
  */
-const CACHE_REVALIDATE_KEY = process.env.NEXT_PUBLIC_CACHE_REVALIDATE_KEY;
+const CACHE_REVALIDATE_KEY = process.env.NEXT_CACHE_REVALIDATE_KEY;
 
 /**
  * @description Revalidate the cache for a given tag
