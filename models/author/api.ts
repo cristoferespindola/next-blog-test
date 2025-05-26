@@ -1,4 +1,4 @@
-import { API_URL } from '../constants';
+import { API_TAGS, API_URL, REVALIDATE_TIME } from '../constants';
 import { IApiPost } from '../posts/types';
 import { IApiSuccessResult, TId } from '../types';
 import { APIAuthor } from './types';
@@ -6,7 +6,8 @@ import { APIAuthor } from './types';
 export const getAuthors = async (): Promise<IApiSuccessResult<APIAuthor[]>> => {
   const response = await fetch(`${API_URL}/users`, {
     next: {
-      revalidate: 3600,
+      revalidate: REVALIDATE_TIME,
+      tags: [API_TAGS.authors],
     },
   })
     .then((res) => res.json())
@@ -35,7 +36,8 @@ export const getAuthors = async (): Promise<IApiSuccessResult<APIAuthor[]>> => {
 export const getAuthorById = async (id: TId): Promise<IApiSuccessResult<APIAuthor>> => {
   const response = await fetch(`${API_URL}/users/${id}`, {
     next: {
-      revalidate: 3600,
+      revalidate: REVALIDATE_TIME || 3600,
+      tags: [API_TAGS.authors],
     },
   })
     .then((res) => res.json())
@@ -64,7 +66,8 @@ export const getAuthorById = async (id: TId): Promise<IApiSuccessResult<APIAutho
 export const getAuthorPosts = async (id: TId): Promise<IApiSuccessResult<IApiPost[]>> => {
   const response = await fetch(`${API_URL}/users/${id}/posts`, {
     next: {
-      revalidate: 3600,
+      revalidate: REVALIDATE_TIME || 3600,
+      tags: ['authors'],
     },
   })
     .then((res) => res.json())

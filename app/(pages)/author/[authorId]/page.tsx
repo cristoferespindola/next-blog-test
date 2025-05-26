@@ -11,9 +11,10 @@ import { Suspense } from 'react';
 export async function generateMetadata({
   params,
 }: {
-  params: { authorId: string };
+  params: Promise<{ authorId: string }>;
 }): Promise<Metadata> {
-  const author = await authorsInfo(Number(params.authorId));
+  const resolvedParams = await params;
+  const author = await authorsInfo(Number(resolvedParams.authorId));
 
   if (!author || 'error' in author) {
     return {

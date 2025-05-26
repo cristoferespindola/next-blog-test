@@ -10,9 +10,10 @@ import { notFound } from 'next/navigation';
 export async function generateMetadata({
   params,
 }: {
-  params: { postId: string };
+  params: Promise<{ postId: string }>;
 }): Promise<Metadata> {
-  const post = await getPostById(Number(params.postId));
+  const resolvedParams = await params;
+  const post = await getPostById(Number(resolvedParams.postId));
 
   return {
     title: post.data.title || 'Mock Blog - Post',

@@ -3,6 +3,30 @@ import { TId } from '@/models/types';
 import { Typography } from '../ui/Typography';
 import { UserInfoAvatar } from '../user/Info';
 
+/**
+ * Comments component
+ * @param {TId} postId - The post ID
+ * @returns {React.ReactNode} The Comments component
+ *
+ * Dev note:
+ * The comments are not paginated, so the comments are not sorted by date.
+ *
+ * Next steps:
+ * - Add pagination
+ * - Add sorting by date
+ * - Add sorting by name
+ * - Add sorting by email
+ * - Add sorting by body
+ * - Add sorting by id
+ * - Add sorting by postId
+ * - Add Like button
+ * - Add Reply button
+ * - Add Reply form
+ * - Add Reply input
+ * - Add Reply submit button
+ * - Add Reply cancel button
+ * - Add Reply cancel button
+ */
 export const Comments = async ({ postId }: { postId: TId }) => {
   const comments = await getComments(postId);
 
