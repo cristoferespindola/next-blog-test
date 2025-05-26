@@ -3,7 +3,7 @@
 A modern blog application built with Next.js, React, and Tailwind CSS.
 Online Demo [here](https://next-blog-test-lime.vercel.app/).
 
-## Technologies Used
+## 🚀 Technologies Used
 
 - **Next.js 15** (App Router, SSR/ISR)
 - **NodeJS 20**
@@ -13,25 +13,26 @@ Online Demo [here](https://next-blog-test-lime.vercel.app/).
 - **ESLint & Prettier** (code quality)
 - **tailwind-merge** (utility class merging)
 
-## Getting Started
+## 🛠️ Getting Started
 
-To use the project node version(see [nvm](https://github.com/nvm-sh/nvm) if need to install)
+1. Set Node Version
+   If you use [nvm](https://github.com/nvm-sh/nvm) :
 
 ```bash
 nvm use
 ```
 
-After to started the project
+2. Install dependencies and run the project:
 
 ```bash
 yarn install
 yarn dev
 ```
 
-In the browser go to:
+3. Open in your browser:
 
 ```bash
-http://localhost:3000/
+[http://localhost:3000/](http://localhost:3000)
 ```
 
 ## Project Structure
@@ -55,7 +56,7 @@ components/
   breadcrumb/
   icons/
   ui/
-    <!-- UI components -->
+    # UI components
   user/
 models/
   authors/
@@ -64,19 +65,7 @@ node_modules/
 public/
 types/
 utils/
-  <!-- Utils files -->
-.gitignore
-.nvmrc
-.prettierrc
-.eslint.config.mjs
-next-env.d.ts
-next.config.ts
-package.json
-postcss.config.mjs
-README.md
-tailwind.config.ts
-tsconfig.json
-yarn.lock
+  # Utils files
 ```
 
 - **app/**: Main application folder (Next.js App Router)
@@ -88,19 +77,22 @@ yarn.lock
 
 ---
 
-## API
+## 🔌 API & Caching
 
-The project uses Vercel cache(1h), to clear the cache I created a route to revalidate and clear the cache.
+This project uses Vercel's cache (1 hour by default).
+To manually clear the cache for a specific tag, use the revalidation route:
 
-**Base URL**: https://jsonplaceholder.typicode.com
-**URL to revalidate cache**: /api/cache-revalidate?tag=posts&key=SUA_CHAVE
+- **Base API URL**: https://jsonplaceholder.typicode.com
+- **Revalidate cache**: `/api/cache-revalidate?tag=posts&key=YOUR_KEY`
 
-## Env variables
+## ⚙️ Environment Variables
 
-<!-- Time to revalidate cache. Default 3600(1h) -->
+Create a .env.local file in the root with the following variables:
 
-NEXT_PUBLIC_API_REVALIDATE=
+# Time (in seconds) to revalidate cache. Default: 3600 (1 hour)
 
-<!-- Key to avoid wrong access -->
+NEXT_PUBLIC_API_REVALIDATE=3600
 
-NEXT_PUBLIC_CACHE_REVALIDATE_KEY=SUA_CHAVE
+# Key to authorize cache revalidation requests
+
+NEXT_PUBLIC_CACHE_REVALIDATE_KEY=YOUR_KEY

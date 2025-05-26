@@ -29,6 +29,13 @@ const gapClasses = {
   lg: '8',
 };
 
+/**
+ * @description Mount the column classes
+ * @param cols - The number of columns to render
+ *
+ * Use the util({@link mountResponsiveClasses}) to mount the responsive classes
+ * @returns The mounted classes
+ */
 const mountColClasses = (cols: IColsProps) => {
   if (typeof cols === 'number') {
     return `grid-cols-${cols}`;
@@ -45,6 +52,13 @@ const mountGapClasses = (gap: IGapProps) => {
   return mountResponsiveClasses(gap, 'gap', gapClasses);
 };
 
+/**
+ * @description Grid component
+ * @param children - The children to render
+ * @param cols - The number of columns to render
+ * @param gap - The gap to render
+ * @param className - The className to render
+ */
 export const Grid = ({ children, cols, gap = 'md', className }: TGridProps) => {
   return (
     <div className={twMerge(`grid`, mountGapClasses(gap), mountColClasses(cols), className)}>
