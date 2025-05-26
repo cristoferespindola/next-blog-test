@@ -1,6 +1,7 @@
 # Mock Blog
 
 A modern blog application built with Next.js, React, and Tailwind CSS.
+Online Demo [here](https://next-blog-test-lime.vercel.app/).
 
 ## Technologies Used
 
@@ -20,9 +21,17 @@ To use the project node version(see [nvm](https://github.com/nvm-sh/nvm) if need
 nvm use
 ```
 
+After to started the project
+
 ```bash
 yarn install
 yarn dev
+```
+
+In the browser go to:
+
+```bash
+http://localhost:3000/
 ```
 
 ## Project Structure
@@ -46,17 +55,7 @@ components/
   breadcrumb/
   icons/
   ui/
-    grid/
-      Grid.tsx
-      types.ts
-    header/
-      Header.tsx
-      Intro.tsx
-      types.ts
-    Container.tsx
-    Footer.tsx
-    Loader.tsx
-    Typography.tsx
+    <!-- UI components -->
   user/
 models/
   authors/
@@ -65,7 +64,7 @@ node_modules/
 public/
 types/
 utils/
-  classes.ts
+  <!-- Utils files -->
 .gitignore
 .nvmrc
 .prettierrc
@@ -88,3 +87,20 @@ yarn.lock
 - **public/**: Static assets
 
 ---
+
+## API
+
+The project uses Vercel cache(1h), to clear the cache I created a route to revalidate and clear the cache.
+
+**Base URL**: https://jsonplaceholder.typicode.com
+**URL to revalidate cache**: /api/cache-revalidate?tag=posts&key=SUA_CHAVE
+
+## Env variables
+
+<!-- Time to revalidate cache. Default 3600(1h) -->
+
+NEXT_PUBLIC_API_REVALIDATE=
+
+<!-- Key to avoid wrong access -->
+
+NEXT_PUBLIC_CACHE_REVALIDATE_KEY=SUA_CHAVE
