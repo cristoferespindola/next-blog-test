@@ -8,7 +8,7 @@ export const AuthorRow = ({ id, name }: { id: TId; name: string }) => {
   if (!id || !name) return null;
 
   return (
-    <Link href={`/author/${id}`}>
+    <Link href={`/author/${id}`} aria-label={name}>
       <UserRow name={name} />
     </Link>
   );
@@ -18,7 +18,7 @@ const AuthorInfoAvatar = ({ id, name, company }: { id: TId; name: string; compan
   if (!id || !name || !company) return null;
 
   return (
-    <Link href={`/author/${id}`} className="flex items-center gap-4">
+    <Link href={`/author/${id}`} className="flex items-center gap-4" aria-label={name}>
       <UserInfoAvatar name={name} sub={company} />
     </Link>
   );
@@ -35,7 +35,7 @@ export const AuthorInfo = async ({
 
   const author = await authorsInfo(authorId);
 
-  if (!author) return null;
+  if (!author || 'error' in author) return null;
 
   return type === 'row' ? (
     <AuthorRow id={author.id} name={author.name} />

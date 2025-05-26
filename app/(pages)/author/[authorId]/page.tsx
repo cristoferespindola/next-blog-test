@@ -4,8 +4,29 @@ import { AuthorPosts } from '@/components/author/Posts';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Grid } from '@/components/ui/grid/Grid';
 import { Typography } from '@/components/ui/Typography';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { authorId: string };
+}): Promise<Metadata> {
+  const author = await authorsInfo(Number(params.authorId));
+
+  if (!author || 'error' in author) {
+    return {
+      title: 'Mock Blog - Author',
+      description: 'Blog for testing purposes',
+    };
+  }
+
+  return {
+    title: author.name || 'Mock Blog - Author',
+    description: author.company || 'Blog for testing purposes',
+  };
+}
 
 const PostPage = async ({ params }: { params: Promise<{ authorId: string }> }) => {
   const resolvedParams = await params;

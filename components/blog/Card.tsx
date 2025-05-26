@@ -19,7 +19,7 @@ export const BlogCard = ({ post, hideAuthor }: BlogCardProps) => {
     <article
       key={post.id}
       className="flex max-w-xl flex-col items-start justify-between rounded-lg border border-gray-200 p-4 hover:translate-y-[-5px] hover:shadow-lg relative transition-all duration-300"
-      data-id={post.id}
+      aria-label={post.title}
     >
       {post.title && (
         <Link href={`/post/${post.id}`} className="hover-link">

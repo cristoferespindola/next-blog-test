@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Typography } from '../Typography';
 import { THeaderSize } from './types';
 
@@ -10,7 +12,7 @@ export const Intro = ({ size = 'lg', className }: { size?: THeaderSize; classNam
       level={sizeLevel}
       className={`font-roboto-mono font-black underline ${sizeClasses} ${className}`}
     >
-      Mock Blog
+      <Link href="/">Mock Blog</Link>
     </Typography.Heading>
   );
 };

@@ -21,10 +21,17 @@ export const InfoItem = ({
   href?: string;
 }) => {
   const ChildrenWrapper = href ? 'a' : 'span';
+
   return (
     <Typography.Text strong>
       {title}:{' '}
-      <ChildrenWrapper className="text-gray-600 hover-link font-normal">{children}</ChildrenWrapper>
+      <ChildrenWrapper
+        aria-label={title}
+        className="text-gray-600 hover-link font-normal"
+        href={href}
+      >
+        {children}
+      </ChildrenWrapper>
     </Typography.Text>
   );
 };

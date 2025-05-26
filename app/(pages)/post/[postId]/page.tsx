@@ -4,7 +4,22 @@ import { Comments } from '@/components/blog/Comments';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
 import { Typography } from '@/components/ui/Typography';
 import { getPostById } from '@/models/posts/api';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { postId: string };
+}): Promise<Metadata> {
+  const post = await getPostById(Number(params.postId));
+
+  return {
+    title: post.data.title || 'Mock Blog - Post',
+    description: post.data.body || 'Blog for testing purposes',
+  };
+}
+
 const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => {
   const resolvedParams = await params;
 
