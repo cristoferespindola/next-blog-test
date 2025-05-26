@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { HomeIcon } from '../icons/Home';
+import { HomeIcon } from '../ui/icons/Home';
 
 const BreadcrumbSeparator = () => {
   return (
