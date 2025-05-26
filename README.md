@@ -87,7 +87,7 @@ To manually clear the cache for a specific tag, use the revalidation route:
 
 ## ⚙️ Environment Variables
 
-Create a .env.local file in the root with the following variables:
+Create a `.env.local` file in the root with the following variables:
 
 # Time (in seconds) to revalidate cache. Default: 3600 (1 hour)
 
@@ -96,3 +96,5 @@ NEXT_PUBLIC_API_REVALIDATE=3600
 # Key to authorize cache revalidation requests
 
 NEXT_PUBLIC_CACHE_REVALIDATE_KEY=YOUR_KEY
+
+Or just rename the `.env.example` to `.env.local`
